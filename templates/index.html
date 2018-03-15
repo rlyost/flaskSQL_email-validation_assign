@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Email Validation</title>
+  <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='email.css')}}">
+</head>
+<body>
+  <!-- we can use the line below to see all of our data in our template -->
+                        <!-- {{ all_users }} -->
+    
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class='flash_msg'>
+                        <p class='white'>{{message}}</p>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    
+    <h2>Add Email</h2>
+    <form action='/users' method='POST'>
+        <label for="email">Email Address:<input type="text" name="email" id="email"></label>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Success!</title>
+  <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='email.css')}}">
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class='flash_success black'>
+                    <p>{{message}}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <h1>Email Addresses Entered:</h1>
+    <!-- with all the data we can then construct a more structured output -->
+    <table>
+        {% for user in all_users: %}
+            <tr>
+                <td>{{ user['email'] }}</td>
+                <td>{{ user['created_at'].strftime("%y-%m-%d %H:%M") }}</td>
+                <td><a href="/delete/{{ user['id'] }}"><button>Delete</button></a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    <a href="/"><button class='add'>Add Another</button></a>
+
+</body>
+</html>
